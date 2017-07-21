@@ -1,0 +1,24 @@
+var disk = batch
+    |query('''
+        SELECT mean(used_percent) as mean_used_percent
+        FROM "telegraf"."autogen".disk
+        WHERE path = '/'
+    ''')
+        .period(5m)
+        .every(5m)
+        .groupBy(*)
+        .fill(0)
+    |delete()
+        .tag('path')
+        .tag('device')
+        .tag('fstype')
+        .tag('host')
+
+disk
+    |eval(lambda: 10.0 - trunc("mean_used_percent" / 10.0))
+            .as('health_index')
+    |influxDBOut()
+        .database('telegraf')
+        .retentionPolicy('autogen')
+        .measurement('health')
+

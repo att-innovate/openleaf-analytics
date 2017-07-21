@@ -1,0 +1,267 @@
+{
+    "dashboard": {
+        "annotations": {
+            "list": []
+        },
+        "editable": true,
+        "gnetId": null,
+        "graphTooltip": 0,
+        "hideControls": false,
+        "id": null,
+        "links": [],
+        "refresh": "1m",
+        "rows": [
+            {
+                "collapse": false,
+                "height": 382,
+                "panels": [
+                    {
+                        "aliasColors": {},
+                        "bars": false,
+                        "datasource": "local",
+                        "fill": 1,
+                        "id": 1,
+                        "legend": {
+                            "alignAsTable": true,
+                            "avg": true,
+                            "current": true,
+                            "max": true,
+                            "min": false,
+                            "rightSide": false,
+                            "show": true,
+                            "sort": "max",
+                            "sortDesc": true,
+                            "total": false,
+                            "values": true
+                        },
+                        "lines": true,
+                        "linewidth": 1,
+                        "links": [],
+                        "nullPointMode": "null",
+                        "percentage": false,
+                        "pointradius": 5,
+                        "points": false,
+                        "renderer": "flot",
+                        "seriesOverrides": [],
+                        "span": 12,
+                        "stack": false,
+                        "steppedLine": false,
+                        "targets": [
+                            {
+                                "alias": "",
+                                "dsType": "influxdb",
+                                "groupBy": [
+                                    {
+                                        "params": [
+                                            "container_name"
+                                        ],
+                                        "type": "tag"
+                                    }
+                                ],
+                                "measurement": "docker_container_mem",
+                                "policy": "default",
+                                "refId": "A",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "usage"
+                                            ],
+                                            "type": "field"
+                                        }
+                                    ]
+                                ],
+                                "tags": []
+                            }
+                        ],
+                        "thresholds": [],
+                        "timeFrom": null,
+                        "timeShift": null,
+                        "title": "Mem Usage (Bytes)",
+                        "tooltip": {
+                            "shared": true,
+                            "sort": 0,
+                            "value_type": "individual"
+                        },
+                        "type": "graph",
+                        "xaxis": {
+                            "mode": "time",
+                            "name": null,
+                            "show": true,
+                            "values": []
+                        },
+                        "yaxes": [
+                            {
+                                "format": "bytes",
+                                "label": null,
+                                "logBase": 1,
+                                "max": null,
+                                "min": null,
+                                "show": true
+                            },
+                            {
+                                "format": "short",
+                                "label": null,
+                                "logBase": 1,
+                                "max": null,
+                                "min": null,
+                                "show": false
+                            }
+                        ]
+                    }
+                ],
+                "repeat": null,
+                "repeatIteration": null,
+                "repeatRowId": null,
+                "showTitle": false,
+                "title": "Dashboard Row",
+                "titleSize": "h6"
+            },
+            {
+                "collapse": false,
+                "height": 250,
+                "panels": [
+                    {
+                        "aliasColors": {},
+                        "bars": false,
+                        "datasource": "local",
+                        "fill": 1,
+                        "id": 2,
+                        "legend": {
+                            "alignAsTable": true,
+                            "avg": true,
+                            "current": true,
+                            "max": true,
+                            "min": false,
+                            "rightSide": false,
+                            "show": true,
+                            "sort": "max",
+                            "sortDesc": true,
+                            "total": false,
+                            "values": true
+                        },
+                        "lines": true,
+                        "linewidth": 1,
+                        "links": [],
+                        "nullPointMode": "null",
+                        "percentage": false,
+                        "pointradius": 5,
+                        "points": false,
+                        "renderer": "flot",
+                        "seriesOverrides": [],
+                        "span": 12,
+                        "stack": false,
+                        "steppedLine": false,
+                        "targets": [
+                            {
+                                "dsType": "influxdb",
+                                "groupBy": [
+                                    {
+                                        "params": [
+                                            "container_name"
+                                        ],
+                                        "type": "tag"
+                                    }
+                                ],
+                                "measurement": "docker_container_cpu",
+                                "policy": "default",
+                                "refId": "A",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "usage_percent"
+                                            ],
+                                            "type": "field"
+                                        }
+                                    ]
+                                ],
+                                "tags": []
+                            }
+                        ],
+                        "thresholds": [],
+                        "timeFrom": null,
+                        "timeShift": null,
+                        "title": "CPU Usage (percent)",
+                        "tooltip": {
+                            "shared": true,
+                            "sort": 0,
+                            "value_type": "individual"
+                        },
+                        "type": "graph",
+                        "xaxis": {
+                            "mode": "time",
+                            "name": null,
+                            "show": true,
+                            "values": []
+                        },
+                        "yaxes": [
+                            {
+                                "format": "short",
+                                "label": "",
+                                "logBase": 1,
+                                "max": null,
+                                "min": "0",
+                                "show": true
+                            },
+                            {
+                                "format": "short",
+                                "label": null,
+                                "logBase": 1,
+                                "max": null,
+                                "min": null,
+                                "show": false
+                            }
+                        ]
+                    }
+                ],
+                "repeat": null,
+                "repeatIteration": null,
+                "repeatRowId": null,
+                "showTitle": false,
+                "title": "Dashboard Row",
+                "titleSize": "h6"
+            }
+        ],
+        "schemaVersion": 14,
+        "style": "dark",
+        "tags": [],
+        "templating": {
+            "list": []
+        },
+        "time": {
+            "from": "now-1h",
+            "to": "now"
+        },
+        "timepicker": {
+            "refresh_intervals": [
+                "5s",
+                "10s",
+                "30s",
+                "1m",
+                "5m",
+                "15m",
+                "30m",
+                "1h",
+                "2h",
+                "1d"
+            ],
+            "time_options": [
+                "5m",
+                "15m",
+                "1h",
+                "6h",
+                "12h",
+                "24h",
+                "2d",
+                "7d",
+                "30d"
+            ]
+        },
+        "timezone": "browser",
+        "title": "Docker",
+        "version": 0
+    }
+}

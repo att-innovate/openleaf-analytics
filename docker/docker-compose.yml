@@ -1,0 +1,26 @@
+influxdb:
+  image: influxdb:openleaf
+  net: "host"
+  restart: always
+  volumes:
+      - /root/openleaf-data/influxdb:/var/lib/influxdb
+telegraf:
+  image: telegraf:openleaf
+  net: "host"
+  restart: always
+  pid: "host"
+  volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+kapacitor:
+  image: kapacitor:openleaf
+  net: "host"
+  restart: always
+  volumes:
+    - /root/openleaf-data/kapacitor:/var/lib/kapacitor
+grafana:
+  image: grafana:openleaf
+  net: "host"
+  restart: always
+  volumes:
+    - /root/openleaf-data/grafana:/var/lib/grafana
+

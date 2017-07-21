@@ -1,0 +1,19 @@
+{
+    "id": 1,
+    "orgId": 1,
+    "name": "local",
+    "type": "influxdb",
+    "typeLogoUrl": "",
+    "access": "proxy",
+    "url": "http://localhost:8086",
+    "password": "",
+    "user": "",
+    "database": "telegraf",
+    "basicAuth": false,
+    "basicAuthUser": "",
+    "basicAuthPassword": "",
+    "withCredentials": false,
+    "isDefault": true,
+    "jsonData": {},
+    "secureJsonFields": {}
+}
