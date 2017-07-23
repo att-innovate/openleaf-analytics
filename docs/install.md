@@ -9,7 +9,11 @@
 
 Follow the steps as outlined on  Docker’s [installation guide for Debian](https://docs.docker.com/engine/installation/linux/debian/).
 
-Additionally the storage-driver needs to be changed:
+Verify if Docker is up and running:
+
+	root@wedge:~# docker ps
+
+It is possible, based on certain combinations of ONL and Docker, that Docker isn’t starting correctly and you get an error. In that case you will need to change the storage-driver:
 
 	root@barefoot:~# echo 'DOCKER_OPTS="--storage-driver=overlay"' >> /etc/default/docker
 	root@barefoot:~# service docker start
