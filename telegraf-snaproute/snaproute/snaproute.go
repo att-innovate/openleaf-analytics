@@ -60,11 +60,11 @@ type Status struct {
 type SnapRoute struct {
 	Url               string
 	lastTime          time.Time
-	lastInDiscards    [256]int64
-	lastOutDiscards   [256]int64
-	lastEtherPkts     [256]int64
-	lastEtherMCPkts   [256]int64
-	lastEtherBCPkts   [256]int64
+	lastInDiscards    [512]int64
+	lastOutDiscards   [512]int64
+	lastEtherPkts     [512]int64
+	lastEtherMCPkts   [512]int64
+	lastEtherBCPkts   [512]int64
 }
 
 var sampleConfig = `
@@ -83,7 +83,7 @@ func (_ *SnapRoute) SampleConfig() string {
 func (s *SnapRoute) Gather(acc telegraf.Accumulator) error {
 	defer func() {
 		if r := recover(); r != nil {
-			glog.Error("E! Problem reading from SnapRoute")
+			glog.Error("E! Problem reading from SnapRoute: ", r)
 			acc.AddFields("status", map[string]interface{}{"ready": false}, nil, time.Now())
 		}
 	}()
