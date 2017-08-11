@@ -120,7 +120,7 @@
                     {
                         "aliasColors": {},
                         "bars": false,
-                        "datasource": "${DS_LOCAL}",
+                        "datasource": "local",
                         "fill": 1,
                         "id": 4,
                         "legend": {
@@ -210,7 +210,7 @@
                     {
                         "aliasColors": {},
                         "bars": false,
-                        "datasource": "${DS_LOCAL}",
+                        "datasource": "local",
                         "fill": 1,
                         "id": 5,
                         "legend": {
