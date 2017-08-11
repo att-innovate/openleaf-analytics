@@ -46,6 +46,8 @@ type Ports struct {
 			IfEtherPkts   int64  `json:"IfEtherPkts"`
 			IfEtherMCPkts int64  `json:"IfEtherMCPkts"`
 			IfEtherBCPkts int64  `json:"IfEtherBcastPkts"`
+			IfInOctets    int64  `json:"IfInOctets"`
+			IfOutOctets   int64  `json:"IfOutOctets"`
 		} `json:"Object"`
 	} `json:"Objects"`
 }
@@ -65,6 +67,8 @@ type SnapRoute struct {
 	lastEtherPkts     [512]int64
 	lastEtherMCPkts   [512]int64
 	lastEtherBCPkts   [512]int64
+	lastInOctets      [512]int64
+	lastOutOctets     [512]int64
 }
 
 var sampleConfig = `
@@ -120,6 +124,8 @@ func (s *SnapRoute) Gather(acc telegraf.Accumulator) error {
 				etherPkts    int64 = 0
 				etherMCPkts  int64 = 0
 				etherBCPkts  int64 = 0
+				inOctets     int64 = 0
+				outOctets    int64 = 0
 			)
 
 			if port.Object.IfInDiscards == 0 {
@@ -163,12 +169,32 @@ func (s *SnapRoute) Gather(acc telegraf.Accumulator) error {
 			}
 			s.lastEtherBCPkts[port.Object.IfIndex] = port.Object.IfEtherBCPkts
 
-			if metricsCount == 5 {
+			if port.Object.IfInOctets == 0 {
+				metricsCount++
+				acc.AddGauge("ports", map[string]interface{}{"in_octets": 0}, tags, now)
+			} else if s.lastInOctets[port.Object.IfIndex] != 0 {
+				metricsCount++
+				inOctets = (port.Object.IfInOctets - s.lastInOctets[port.Object.IfIndex]) / int64(diffTime)
+			}
+			s.lastInOctets[port.Object.IfIndex] = port.Object.IfInOctets
+
+			if port.Object.IfOutOctets == 0 {
+				metricsCount++
+				acc.AddGauge("ports", map[string]interface{}{"out_octets": 0}, tags, now)
+			} else if s.lastOutOctets[port.Object.IfIndex] != 0 {
+				metricsCount++
+				outOctets = (port.Object.IfOutOctets - s.lastOutOctets[port.Object.IfIndex]) / int64(diffTime)
+			}
+			s.lastOutOctets[port.Object.IfIndex] = port.Object.IfOutOctets
+
+			if metricsCount == 7 {
 				acc.AddCounter("ports", map[string]interface{}{"discard_in": inDiscards}, tags, now)
 				acc.AddCounter("ports", map[string]interface{}{"discard_out": outDiscards}, tags, now)
 				acc.AddGauge("ports", map[string]interface{}{"sent": etherPkts}, tags, now)
 				acc.AddGauge("ports", map[string]interface{}{"sent_mc": etherMCPkts}, tags, now)
 				acc.AddGauge("ports", map[string]interface{}{"sent_bc": etherBCPkts}, tags, now)
+				acc.AddGauge("ports", map[string]interface{}{"in_octets": inOctets}, tags, now)
+				acc.AddGauge("ports", map[string]interface{}{"out_octets": outOctets}, tags, now)
 			}
 		}
 	}

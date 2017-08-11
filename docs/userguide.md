@@ -23,6 +23,8 @@ The “Health Index” chart shows an overall index score of the health of the s
 
 Visualizes telemetry data from the switching silicon. “Port Traffic” shows “packets per seconds sent” for the individual active ports.
 
+“Port Data In” and “Port Data Out” show “bytes per seconds sent and received”.
+
 “Multicast/Broadcast” shows “max packets per seconds sent” of multicast and broadcast packets overall.
 
 “Discarded Packages” shows “count of packages” discarded since last measurement for ingress and egress for the individual active ports.
