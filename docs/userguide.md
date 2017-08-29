@@ -62,7 +62,7 @@ To work with the time-series data select “Database: telegraf” from the datab
 #### Command-line Query Tool
 ![query tool](https://github.com/att-innovate/openleaf-analytics/blob/master/docs/influxdb-cmdline.png)
 
-On the switch the tool can be started from the shell by calling `.scripts/run_client_influxdb.sh`.
+On the switch the tool can be started from the shell by calling `./scripts/run_client_influxdb.sh`.
 
 Detailed information about InfluxDB and its query language can be found [online](https://docs.influxdata.com/influxdb/v1.3/).
 
